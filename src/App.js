@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
 
-
 class App extends Component {
   constructor() {
     super();
@@ -32,7 +31,7 @@ class App extends Component {
         <div className= "container">
           <textarea onChange={this.update.bind(this)} defaultValue={this.state.input} />
           <pre>
-            {this.state.ouput}
+            {this.state.output}
           </pre>
         </div>
       </div>
