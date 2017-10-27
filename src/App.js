@@ -1,19 +1,39 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import logo from './logo.svg';
-import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {items: [
+      {
+        'name': 'Another',
+        'type': 'Tieu thuyet kinh di',
+        'author': 'Yukito Ayatsuji'
+      },
+      {
+        'name': 'Dau truong sinh tu',
+        'type': 'Tieu thuyet',
+        'author': 'Suzanne Collins'
+      },
+      {
+        'name': 'Toi thay hoa vang tren co xanh',
+        'type': 'Truyen ngan',
+        'author': 'Nguyen Nhat Anh'
+      }
+    ]}
+  }
+  componentWillMount() {
+
+  }
   render() {
+    let items = this.state.items
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div >
+        <table>
+          {items.map(item => <h4>{item.name}</h4>)}
+          {items.map(item => <h4>{item.type}</h4>)}
+          {items.map(item => <h4>{item.author}</h4>)}
+        </table>
       </div>
     );
   }
