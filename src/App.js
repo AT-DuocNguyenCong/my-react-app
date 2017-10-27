@@ -1,22 +1,49 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import logo from './logo.svg';
-import './App.css';
+
+const HOC = (InnerComponent) => class extends Component {
+  constructor() {
+    super();
+    this.state = {count: 0};
+  }
+  update() {
+    this.setState({count: this.state.count + 1})
+  }
+  componentWillMount() {
+    console.log('Will mount');
+  }
+  render() {
+    return (
+      <InnerComponent {...this.props} {...this.state}/>
+    );
+  }
+}
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div >
+        <Button>Button</Button>
+        <hr/>
+        <LabelHOC>Label</LabelHOC>
       </div>
     );
   }
 }
+
+const Button = HOC((props) => <button onClick={props.update}>{props.children} - {props.count}</button>)
+
+class Label extends Component {
+  componentWillMount() {
+    console.log('label will mount');
+  }
+  render() {
+    return (
+      <label>{this.props.children} - {this.props.count}</label>
+    );
+  }
+}
+
+const LabelHOC = HOC(Label)
 
 export default App;
